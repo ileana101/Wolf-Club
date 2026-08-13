@@ -1,8 +1,10 @@
-# Wolf Club — Character Creation Findability A/B Test
+# Wolf Club — Search and Navigation A/B Test
 
 Two static reproductions of the same real "how do I make a character" content,
 each laid out the way its source platform actually structures it, for
-comparing findability:
+comparing findability. `index.html` is a moderator dashboard: version-chooser
+cards up top, and a session log below for tracking who tested, what they were
+doing, and how it went.
 
 - **`weebly-style/`** — mirrors the group's Weebly site: nav bar (Home /
   Joining / Member Guides / Shop / Packs / Resources / Contact / Members),
@@ -18,6 +20,24 @@ actual pages, just re-labeled from "Domain of the Wolf / DotW" to "Wolf
 Club" per this project's rebrand. Non-functional chrome (top nav items,
 template download buttons, pack-name pills) is visibly inert/disabled rather
 than linking to pages that don't exist in this prototype.
+
+## The dashboard (`index.html`)
+
+The root page is a moderator tool, not something to send testers to directly:
+
+- **Version A / Version B cards** — click through to open either variant
+  (`deviantart-style/index.html`, `weebly-style/index.html`) in the platform's
+  real layout.
+- **Search Sessions log** — enter a participant's name and task, pick which
+  version they're on (optional), and hit **Start** to begin a live timer.
+  When they finish, click **Satisfied** or **Dissatisfied**; that button
+  fills in with its color and shows the elapsed time, the other button fades
+  out. Sessions persist in the browser's `localStorage`, so they survive a
+  reload.
+- **Reset to seed** clears any sessions you've logged and restores the three
+  example participants (Misty Artimire, Frankie Finkle, Nicholas Braun — all
+  logged as Satisfied, since the version isn't recorded for these three
+  historical entries, their badge reads "Not recorded").
 
 ## Running locally
 
@@ -57,7 +77,9 @@ to `/weebly-style/index.html` or `/deviantart-style/index.html`.
 
 ## Running the test
 
-For a real comparison, don't send testers to the landing page — send half of
+For a real comparison, don't send testers to the dashboard — send half of
 them the `weebly-style` link and half the `deviantart-style` link directly,
-and ask them to find out how to make a character. The landing page is there
-for you/the client to review both side by side, not for testers.
+and ask them to find out how to make a character. Use the dashboard yourself
+(as moderator) to log each session's name, task, version, and result, or
+have the tester submit the in-page "did you find what you needed?" widget on
+whichever variant they land on.

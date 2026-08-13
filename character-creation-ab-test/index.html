@@ -3,67 +3,76 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Wolf Club Character-Creation A/B Test</title>
-<style>
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: #14171c;
-    color: #eee;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 24px;
-  }
-  .wrap { max-width: 720px; }
-  h1 { font-size: 26px; margin-bottom: 4px; }
-  p.lede { color: #aaa; margin-top: 0; }
-  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 28px; }
-  @media (max-width: 620px) { .cards { grid-template-columns: 1fr; } }
-  .card {
-    background: #1e2126;
-    border: 1px solid #2c2f36;
-    border-radius: 10px;
-    padding: 20px;
-  }
-  .card h2 { font-size: 17px; margin-top: 0; }
-  .card p { font-size: 13px; color: #bbb; line-height: 1.5; }
-  .card a {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 9px 16px;
-    background: #5c7cfa;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 6px;
-    font-size: 13px;
-    font-weight: 600;
-  }
-  .card.deviant a { background: #2b6f81; }
-  .note { margin-top: 26px; font-size: 12px; color: #777; line-height: 1.6; }
-</style>
+<title>Wolf Club — Search and Navigation</title>
+<link rel="stylesheet" href="dashboard.css" />
 </head>
 <body>
 <div class="wrap">
-  <h1>Character-Creation Findability Test</h1>
-  <p class="lede">Two reproductions of the same real Wolf Club rules, laid out the way each source platform actually structures them.</p>
+
+  <p class="kicker">Wolf Club</p>
+  <h1>Search and Navigation</h1>
+  <p class="subtitle">Two approaches when it comes to finding information for the group. Both start
+  from the same task &mdash; a prospective member looking for how to make a character.</p>
 
   <div class="cards">
-    <div class="card">
-      <h2>Weebly-style</h2>
-      <p>The group's own site: character-creation rules and design guide on one page, general joining info on another, reached via top nav.</p>
-      <a href="weebly-style/index.html">Open variant &rarr;</a>
-    </div>
-    <div class="card deviant">
-      <h2>DeviantArt-style</h2>
-      <p>The group's DeviantArt journal: joining process and character-creation rules bundled into one long scrolling page.</p>
-      <a href="deviantart-style/index.html">Open variant &rarr;</a>
-    </div>
+    <a class="card" href="deviantart-style/index.html">
+      <span class="arrow">&rarr;</span>
+      <p class="kicker">Version A</p>
+      <h2>DeviantArt</h2>
+      <p class="tagline">Everything lives in one journal.</p>
+      <p class="desc">A portfolio website where members of the group are able to post their
+      contributions to the group, but also access member guidelines. Joining and the
+      application guide are one source here.</p>
+      <div class="card-divider"></div>
+      <div class="status"><span class="dot"></span> Ready for a participant</div>
+    </a>
+
+    <a class="card" href="weebly-style/index.html">
+      <span class="arrow">&rarr;</span>
+      <p class="kicker">Version B</p>
+      <h2>Admin-made Website</h2>
+      <p class="tagline">Rules live separate from joining.</p>
+      <p class="desc">An information dense website only featuring current and updated rules
+      and guidelines for the Wolf Club group. Joining and the application guide are
+      different pages here.</p>
+      <div class="card-divider"></div>
+      <div class="status"><span class="dot"></span> Ready for a participant</div>
+    </a>
   </div>
 
-  <p class="note">For a moderated test, send a tester one variant link directly (not this page) and ask them to find out how to make a character. Each variant has a "did you find what you needed?" prompt that logs to Vercel Web Analytics + <code>/api/feedback</code> once deployed.</p>
+  <section class="panel">
+    <div class="panel-header">
+      <div>
+        <h2>Search Sessions</h2>
+        <p>Who's testing, what they're doing, and how it went.</p>
+      </div>
+      <button id="reset-btn" class="ghost-btn" type="button">&#8635; Reset to seed</button>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="new-session">
+      <h3>Log a session</h3>
+      <p>Start a timer when a participant begins looking; mark the result when they're done.</p>
+      <form id="session-form">
+        <input id="input-name" type="text" placeholder="Participant name" required />
+        <input id="input-task" type="text" value="Looking for information for how to create a character" required />
+        <select id="input-version">
+          <option value="">Version (optional)</option>
+          <option value="deviantart">Version A — DeviantArt</option>
+          <option value="weebly">Version B — Admin Website</option>
+        </select>
+        <button type="submit" class="primary-btn">Start</button>
+      </form>
+    </div>
+
+    <div class="divider"></div>
+
+    <ul class="session-list" id="session-list"></ul>
+  </section>
+
 </div>
+
+<script src="dashboard.js"></script>
 </body>
 </html>
