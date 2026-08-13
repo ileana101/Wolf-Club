@@ -1,0 +1,9 @@
+{
+  "name": "wolf-club-character-creation-ab-test",
+  "private": true,
+  "version": "1.0.0",
+  "description": "A/B test comparing Weebly-style vs DeviantArt-style layouts of the Wolf Club character-creation guide.",
+  "scripts": {
+    "dev": "vercel dev"
+  }
+}
