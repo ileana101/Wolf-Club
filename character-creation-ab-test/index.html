@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wolf Club — Search and Navigation</title>
+<link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+<div class="wrap">
+
+  <p class="kicker">Wolf Club</p>
+  <h1>Search and Navigation</h1>
+  <p class="subtitle">Two approaches when it comes to finding information for the group. Both start
+  from the same task &mdash; a prospective member looking for how to make a character.</p>
+
+  <div class="cards">
+    <a class="card" href="deviantart-style/index.html">
+      <div class="card-preview">
+        <iframe src="deviantart-style/index.html" tabindex="-1" aria-hidden="true" loading="lazy" title="DeviantArt-style preview"></iframe>
+      </div>
+      <div class="card-body">
+        <span class="arrow">&rarr;</span>
+        <p class="kicker">Version A</p>
+        <h2>DeviantArt</h2>
+        <p class="tagline">Everything lives in one journal.</p>
+        <p class="desc">A portfolio website where members of the group are able to post their
+        contributions to the group, but also access member guidelines. Joining and the
+        application guide are one source here.</p>
+        <div class="card-divider"></div>
+        <div class="status"><span class="dot"></span> Ready for a participant</div>
+      </div>
+    </a>
+
+    <a class="card" href="weebly-style/index.html">
+      <div class="card-preview">
+        <iframe src="weebly-style/character-creation.html" tabindex="-1" aria-hidden="true" loading="lazy" title="Admin-made website preview"></iframe>
+      </div>
+      <div class="card-body">
+        <span class="arrow">&rarr;</span>
+        <p class="kicker">Version B</p>
+        <h2>Admin-made Website</h2>
+        <p class="tagline">Rules live separate from joining.</p>
+        <p class="desc">An information dense website only featuring current and updated rules
+        and guidelines for the Wolf Club group. Joining and the application guide are
+        different pages here.</p>
+        <div class="card-divider"></div>
+        <div class="status"><span class="dot"></span> Ready for a participant</div>
+      </div>
+    </a>
+  </div>
+
+  <section class="panel">
+    <div class="panel-header">
+      <div>
+        <h2>Search Sessions</h2>
+        <p>Who's testing, what they're doing, and how it went.</p>
+      </div>
+      <button id="reset-btn" class="ghost-btn" type="button">&#8635; Reset to seed</button>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="new-session">
+      <h3>Log a session</h3>
+      <p>Start a timer when a participant begins looking; mark the result when they're done.</p>
+      <form id="session-form">
+        <input id="input-name" type="text" placeholder="Participant name" required />
+        <input id="input-task" type="text" value="Looking for information for how to create a character" required />
+        <select id="input-version">
+          <option value="">Version (optional)</option>
+          <option value="deviantart">Version A — DeviantArt</option>
+          <option value="weebly">Version B — Admin Website</option>
+        </select>
+        <button type="submit" class="primary-btn">Start</button>
+      </form>
+    </div>
+
+    <div class="divider"></div>
+
+    <ul class="session-list" id="session-list"></ul>
+  </section>
+
+</div>
+
+<script src="dashboard.js"></script>
+</body>
+</html>
