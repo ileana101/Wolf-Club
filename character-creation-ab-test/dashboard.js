@@ -190,9 +190,20 @@
     render();
   }
 
+  function scalePreviews() {
+    document.querySelectorAll(".card-preview").forEach(function (container) {
+      var iframe = container.querySelector("iframe");
+      if (!iframe) return;
+      var scale = container.clientWidth / 1280;
+      iframe.style.transform = "scale(" + scale + ")";
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     load();
     render();
+    scalePreviews();
+    window.addEventListener("resize", scalePreviews);
 
     document.getElementById("session-form").addEventListener("submit", function (e) {
       e.preventDefault();
