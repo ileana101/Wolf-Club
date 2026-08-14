@@ -3,7 +3,7 @@
 Two static reproductions of the same real "how do I make a character" content,
 each laid out the way its source platform actually structures it, for
 comparing findability. `index.html` is a moderator dashboard: version-chooser
-cards up top, and a session log below for tracking who tested, what they were
+cards up top, and a session log below for tracking who tested, what thy were
 doing, and how it went..
 
 - **`weebly-style/`** — mirrors the group's Weebly site: nav bar (Home /
