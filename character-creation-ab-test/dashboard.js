@@ -7,7 +7,7 @@
       name: "Misty Artimire",
       task: "Looking for information for how to create a character",
       version: null,
-      status: "satisfied",
+      status: "dissatisfied",
       durationMs: (60 + 10) * 60 * 1000, // 1 hour 10 minutes
     },
     {
