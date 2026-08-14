@@ -3,7 +3,7 @@
 
   var SEED = [
     {
-      id: "seed-1",
+      id: "seed-1a",
       name: "Misty Artimire",
       task: "Looking for information for how to create a character",
       version: "deviantart",
@@ -11,20 +11,44 @@
       durationMs: (60 + 10) * 60 * 1000, // 1 hour 10 minutes
     },
     {
-      id: "seed-2",
+      id: "seed-1b",
+      name: "Misty Artimire",
+      task: "Looking for information for how to create a character",
+      version: "weebly",
+      status: "dissatisfied",
+      durationMs: (60 + 10) * 60 * 1000, // 1 hour 10 minutes
+    },
+    {
+      id: "seed-2a",
+      name: "Frankie Finkle",
+      task: "Looking for information for how to create a character",
+      version: "deviantart",
+      status: "dissatisfied",
+      durationMs: 30 * 60 * 1000,
+    },
+    {
+      id: "seed-2b",
       name: "Frankie Finkle",
       task: "Looking for information for how to create a character",
       version: "weebly",
       status: "satisfied",
-      durationMs: 30 * 60 * 1000,
+      durationMs: 15 * 60 * 1000,
+    },
+    {a
+      id: "seed-3a",
+      name: "Nicholas Braun",
+      task: "Looking for information for how to create a character",
+      version: "deviantart",
+      status: "satisfied",
+      durationMs: 15 * 60 * 1000,
     },
     {
-      id: "seed-3",
+      id: "seed-3b",
       name: "Nicholas Braun",
       task: "Looking for information for how to create a character",
       version: "weebly",
       status: "satisfied",
-      durationMs: 15 * 60 * 1000,
+      durationMs: 5 * 60 * 1000,
     },
   ];
 
