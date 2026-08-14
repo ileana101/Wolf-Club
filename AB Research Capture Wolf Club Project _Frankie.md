@@ -89,7 +89,7 @@ Ask exactly: **“Which one would you use on a busy day, and why?”** Write the
 
 Anything they said they would change about either version:
 
-If I were finding myself busy, I would prefer to use the website because the information has been consolidated within a singular source as opposed to being spread apart through multiple sources like on Deviantart.
+It depends on my mood personally. If I am already on Deviantart, I will use Deviantart, however if I am truly in a pinch, I'll rely on the website.
 
 ---
 
