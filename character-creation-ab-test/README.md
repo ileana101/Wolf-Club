@@ -36,10 +36,10 @@ The root page is a moderator tool, not something to send testers to directly:
   fills in with its color and shows the elapsed time, the other button fades
   out. Sessions persist in the browser's `localStorage`, so they survive a
   reload.
-- **Reset to seed** clears any sessions you've logged and restores the three
-  example participants (Misty Artimire, Frankie Finkle, Nicholas Braun — all
-  logged as Satisfied, since the version isn't recorded for these three
-  historical entries, their badge reads "Not recorded").
+- **Reset to seed** clears any sessions you've logged and restores the six
+  example sessions — Misty Artimire, Frankie Finkle, and Nicholas Braun each
+  logged once on DeviantArt and once on the Admin Website, so you can compare
+  the same participant across both versions.
 
 ## Running locally
 
