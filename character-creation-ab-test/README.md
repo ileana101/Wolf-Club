@@ -9,7 +9,9 @@ doing, and how it went..
 - **`weebly-style/`** — mirrors the group's Weebly site: nav bar (Home /
   Joining / Member Guides / Shop / Packs / Resources / Contact / Members),
   and the character-creation rules/design guide split onto their own page,
-  separate from the general "Joining" page.
+  separate from the general "Joining" page. `joining.html` is the entry
+  point (there's no separate home page — "Home" in the nav is an inert
+  placeholder like the other unused nav items).
 - **`deviantart-style/`** — mirrors the group's DeviantArt journal: joining
   process and character-creation rules bundled into a single long scrolling
   page with jump-link pills at the top.
@@ -26,8 +28,8 @@ than linking to pages that don't exist in this prototype.
 The root page is a moderator tool, not something to send testers to directly:
 
 - **Version A / Version B cards** — click through to open either variant
-  (`deviantart-style/index.html`, `weebly-style/index.html`) in the platform's
-  real layout.
+  (`deviantart-style/index.html`, `weebly-style/joining.html`) in the
+  platform's real layout.
 - **Search Sessions log** — enter a participant's name and task, pick which
   version they're on (optional), and hit **Start** to begin a live timer.
   When they finish, click **Satisfied** or **Dissatisfied**; that button
@@ -54,7 +56,7 @@ vercel dev
 ```
 
 Then open `http://localhost:<port>/` for the landing page, or jump straight
-to `/weebly-style/index.html` or `/deviantart-style/index.html`.
+to `/weebly-style/joining.html` or `/deviantart-style/index.html`.
 
 ## Deploying to Vercel
 
@@ -66,7 +68,7 @@ to `/weebly-style/index.html` or `/deviantart-style/index.html`.
 3. No framework preset needed — leave it as "Other" / static. No build
    command or output directory required.
 4. Deploy. You'll get one URL; the three routes are
-   `/`, `/weebly-style/index.html`, and `/deviantart-style/index.html`.
+   `/`, `/weebly-style/joining.html`, and `/deviantart-style/index.html`.
 5. **Optional — enable feedback capture:** turn on **Web Analytics** for the
    project in the Vercel dashboard (Analytics tab → Enable). Each variant has
    a small "did you find what you needed?" widget in the bottom-right corner
