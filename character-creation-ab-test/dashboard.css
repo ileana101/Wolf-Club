@@ -156,6 +156,34 @@ h1 {
   flex-shrink: 0;
 }
 
+.dot-winner {
+  background: #f59e0b;
+}
+
+.status:has(.dot-winner) {
+  color: #92400e;
+  font-weight: 600;
+}
+
+.winner-pill {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 2px 8px;
+  background: #fef3c7;
+  color: #92400e;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  border-radius: 999px;
+  vertical-align: middle;
+}
+
+.card:has(.winner-pill) {
+  border-color: #f5c76b;
+  box-shadow: 0 0 0 1px #f5c76b inset;
+}
+
 /* ---- Panel ---- */
 .panel {
   margin-top: 32px;
