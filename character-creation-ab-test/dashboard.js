@@ -34,7 +34,7 @@
       status: "satisfied",
       durationMs: 15 * 60 * 1000,
     },
-    {a
+    {
       id: "seed-3a",
       name: "Nicholas Braun",
       task: "Looking for information for how to create a character",
