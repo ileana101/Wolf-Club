@@ -1,8 +1,9 @@
 # Wolf Club — Site
 
-A static implementation of the Wolf Club home page and joining flow, built
-from the Figma prototype screenshots. Plain HTML/CSS/JS — no build step,
-no framework — so it deploys to Vercel as-is.
+A static implementation of the Wolf Club website, built from the Figma
+prototype screenshots. Plain HTML/CSS/JS — no build step, no framework — so
+it deploys to Vercel as a static site, plus one small serverless function
+for the AI chatbot.
 
 ## Pages
 
@@ -17,55 +18,121 @@ no framework — so it deploys to Vercel as-is.
 - **`group-rules.html`** — Group Rules (also nested under Joining): member
   Code of Conduct, general group rules, the Member Strike System,
   submission guidelines, mature content guidelines, and Discord rules.
+- **`member-guides.html`** — Member Guides landing page (Getting Started,
+  Community Rules, Roleplay Tips), with a dropdown to the five guides
+  below.
+- **`bones.html`** — the full Bones Currency System: how to earn bones
+  (illustrations, comics, RP/lit, animations/PMVs, MSEs), bonuses, what's
+  not eligible, how to cash them, and FAQ.
+- **`activity-check.html`** — monthly member activity, seasonal character
+  activity, force-retirement consequences, and retirement/character death.
+- **`character-creation.html`** — general character rules, first/other
+  character limits, Other Creatures, application art requirements and
+  templates, required biography fields, names/age/gender/height/weight, and
+  the full design guide (markings, fur, eyes, scarring) with the reference
+  images.
+- **`pack-creation.html`** — who can apply to lead a pack, drafting a pack's
+  culture/hierarchy, the tryout/voting process, and pack costs.
+- **`mates-and-pups.html`** — bonded vs. temporary mates, pregnancy, litters
+  and pup adoption, guardians, and the mates & pups masterlist.
+- **`shop.html`** — every bone cost on the site in one place: accessories,
+  familiars, rank/task, faction changes, mutations, mates, pregnancy,
+  pups/litters, additional characters, and creating a pack.
+- **`packs.html`** — the eight active packs, Loners/Loner Bands, Other
+  Creatures, and the disbanded-packs lore.
 
-Content for **Member Guides, Shop, Packs, Resources, and Contact** hasn't
-been provided yet — those nav items are wired up with dropdown menus per
-the design note, but each currently shows an inert "Coming soon" entry.
-Once screenshots for those pages arrive, add the real links into that
-item's `.wc-dropdown` block (same pattern as the Joining dropdown) and
-build the corresponding page.
+Content for **Contact** hasn't been provided yet — that nav item has a
+dropdown per the design note, but currently shows an inert "Coming soon"
+entry. The **Resources** tab has been removed per request. Per-pack culture
+pages (Chandor, Fellfang, etc.) aren't built yet either — the Packs page's
+"View Pack" buttons and nav dropdown currently just anchor down to that
+pack's card on the same page; wire them to real pages once that content
+arrives.
 
 ## Navigation behavior
+
+The nav markup lives in exactly one place — `js/nav.js` — and is rendered
+into a `<div id="wc-nav-root" data-current="..." data-current-href="...">`
+placeholder on every page, so adding or renaming a dropdown item only
+requires editing one file instead of eleven.
 
 - The top nav bar uses `position: sticky` (see `css/styles.css`,
   `.wc-nav`), so it stays pinned to the top of the viewport as the page
   scrolls — no need to scroll back up to reach another link.
-- On desktop, **Joining**, **Member Guides**, **Shop**, **Packs**,
-  **Resources**, and **Contact** each open a dropdown (hover or click) to
-  their sub-pages.
-- Below 880px wide, the bar collapses behind a hamburger button
-  (`js/nav.js` handles the toggle); tapping an item with children expands
-  it in place as an accordion instead of a hover flyout.
+- On desktop, **Joining**, **Member Guides**, **Shop**, **Packs**, and
+  **Contact** each open a dropdown (hover or click) to their sub-pages.
+- Below 880px wide, the bar collapses behind a hamburger button; tapping an
+  item with children expands it in place as an accordion instead of a
+  hover flyout.
+
+## AI chatbot ("Ask Wolf Club")
+
+A floating chat launcher (bottom-right, every page) opens a panel backed by
+the `/api/chat` serverless function (`api/chat.js`). It's built in two
+layers:
+
+1. **Synonym-aware search** (`lib/synonyms.js` + `lib/search.js` +
+   `lib/content-index.js`) — a hand-maintained index of every page's actual
+   content, matched against the visitor's question after expanding niche
+   in-group terms and their plain-language synonyms (e.g. "currency" ↔
+   "bones", "puppy" ↔ "pup", "leader" ↔ "alpha"). This runs with **zero
+   configuration** and always works.
+2. **Claude, grounded in that search** — if an `ANTHROPIC_API_KEY` is set
+   in the Vercel project's environment variables, the top matches are
+   handed to Claude (`claude-opus-5`) as context, and it writes a real,
+   conversational answer strictly from that context (with a source link
+   back to the relevant page). Without a key, the widget still works — it
+   falls back to showing the raw matched excerpts as a keyword-search
+   result, and says so.
+
+**To enable the full AI-generated answers:** in the Vercel project →
+Settings → Environment Variables, add `ANTHROPIC_API_KEY` with a key from
+[console.anthropic.com](https://console.anthropic.com), then redeploy.
+
+**Keeping the chatbot's knowledge in sync:** there's no build-time scraper
+— `lib/content-index.js` is the source of truth for what the bot can
+answer. When you add or change a page's content, add or update the
+matching chunk(s) in that file. Add new niche terms/synonyms to
+`lib/synonyms.js` as they come up (e.g. once Shop/Packs get more detail, or
+new slang appears in the community).
 
 ## Images
 
 The Character of the Season headshot and the three Featured Gallery
-images are hot-linked to their original DeviantArt/wixmp URLs, as given
-for this build. Those URLs carry signed tokens that may eventually
-expire — if an image stops loading, download a fresh copy from DeviantArt
-and swap in a local file under an `assets/` folder instead.
+images, and the character-creation design-guide reference images, are
+hot-linked to their original DeviantArt/wixmp/Weebly URLs, as given for
+this build. The wixmp URLs carry signed tokens that may eventually
+expire — if an image stops loading, download a fresh copy and swap in a
+local file under an `assets/` folder instead.
 
 The hero background is a CSS gradient placeholder standing in for the
 painted forest illustration from Figma — export that artwork as an image
 and drop it into the `.wc-hero` background rule in `css/styles.css` when
 it's available.
 
-The "About Us" paragraph on the home page was cut off at the bottom of
-the screenshot; the ending has been written to match the surrounding tone
-but should be checked against the original Figma copy.
+The "About Us" paragraph on the home page was cut off at the bottom of the
+original screenshot; the ending has been written to match the surrounding
+tone but should be checked against the original Figma copy.
 
 ## Running locally
 
-No build step required:
+Install the one dependency (the Anthropic SDK, used only by the chatbot's
+serverless function):
+
+```bash
+npm install
+```
+
+Then, with the Vercel CLI (needed so `/api/chat` actually runs locally):
+
+```bash
+npx vercel dev
+```
+
+Static-only preview (chatbot will fail to reach `/api/chat` this way):
 
 ```bash
 npx serve .
-```
-
-or, with the Vercel CLI:
-
-```bash
-vercel dev
 ```
 
 ## Deploying to Vercel
@@ -77,5 +144,9 @@ vercel dev
    `character-creation-ab-test/`), set **Root Directory** to
    `wolf-club-site` in the project settings.
 3. Framework preset: **Other** / static. No build command or output
-   directory needed.
-4. Deploy.
+   directory needed — Vercel auto-installs `package.json` and picks up
+   `api/chat.js` as a serverless function.
+4. (Optional but recommended) Add the `ANTHROPIC_API_KEY` environment
+   variable so the chatbot gives real AI-generated answers instead of
+   falling back to raw keyword search.
+5. Deploy.

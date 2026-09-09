@@ -8,82 +8,7 @@
 </head>
 <body>
 
-<header class="wc-nav">
-  <div class="wc-nav-inner">
-    <a class="wc-logo" href="index.html">
-      <span class="wc-logo-mark" aria-hidden="true">🐾</span>
-      Wolf Club
-    </a>
-
-    <nav aria-label="Primary">
-      <ul class="wc-menu">
-        <li class="wc-menu-item">
-          <a class="wc-menu-link" href="index.html">Home</a>
-        </li>
-        <li class="wc-menu-item">
-          <button class="wc-menu-link is-current" type="button" aria-expanded="false">
-            Joining <span class="wc-caret" aria-hidden="true">▾</span>
-          </button>
-          <div class="wc-dropdown">
-            <a href="joining.html">Joining</a>
-            <a href="staff.html">Staff</a>
-            <a href="group-rules.html">Group Rules</a>
-          </div>
-        </li>
-        <li class="wc-menu-item">
-          <button class="wc-menu-link" type="button" aria-expanded="false">
-            Member Guides <span class="wc-caret" aria-hidden="true">▾</span>
-          </button>
-          <div class="wc-dropdown">
-            <a class="is-inert" href="#" title="Coming soon">Coming soon</a>
-          </div>
-        </li>
-        <li class="wc-menu-item">
-          <button class="wc-menu-link" type="button" aria-expanded="false">
-            Shop <span class="wc-caret" aria-hidden="true">▾</span>
-          </button>
-          <div class="wc-dropdown">
-            <a class="is-inert" href="#" title="Coming soon">Coming soon</a>
-          </div>
-        </li>
-        <li class="wc-menu-item">
-          <button class="wc-menu-link" type="button" aria-expanded="false">
-            Packs <span class="wc-caret" aria-hidden="true">▾</span>
-          </button>
-          <div class="wc-dropdown">
-            <a class="is-inert" href="#" title="Coming soon">Coming soon</a>
-          </div>
-        </li>
-        <li class="wc-menu-item">
-          <button class="wc-menu-link" type="button" aria-expanded="false">
-            Resources <span class="wc-caret" aria-hidden="true">▾</span>
-          </button>
-          <div class="wc-dropdown">
-            <a class="is-inert" href="#" title="Coming soon">Coming soon</a>
-          </div>
-        </li>
-        <li class="wc-menu-item">
-          <button class="wc-menu-link" type="button" aria-expanded="false">
-            Contact <span class="wc-caret" aria-hidden="true">▾</span>
-          </button>
-          <div class="wc-dropdown">
-            <a class="is-inert" href="#" title="Coming soon">Coming soon</a>
-          </div>
-        </li>
-      </ul>
-    </nav>
-
-    <div class="wc-nav-tools">
-      <div class="wc-search" role="search">
-        <span aria-hidden="true">🔍</span>
-        <input type="search" placeholder="Search…" aria-label="Search Wolf Club" />
-      </div>
-      <button class="wc-hamburger" type="button" aria-label="Toggle menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </div>
-</header>
+<div id="wc-nav-root" data-current="joining" data-current-href="joining.html"></div>
 
 <div class="wc-page-header">
   <h1>Joining Wolf Club</h1>
@@ -284,5 +209,6 @@
 </footer>
 
 <script src="js/nav.js"></script>
+<script src="js/chatbot.js"></script>
 </body>
 </html>

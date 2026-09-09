@@ -592,6 +592,279 @@ img { max-width: 100%; display: block; }
 .wc-footer p { margin: 0 0 4px; font-weight: 700; }
 .wc-footer p:last-child { margin-bottom: 0; font-weight: 400; color: var(--ink-soft); }
 
+/* ============================================================
+   Member Guides / Shop / Packs — shared card components
+   ============================================================ */
+
+.wc-icon-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 700px) {
+  .wc-icon-cards { grid-template-columns: 1fr; }
+}
+
+.wc-icon-card {
+  background: var(--panel-alt);
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  padding: 22px 16px;
+  text-align: center;
+}
+
+.wc-icon-card .wc-icon-glyph { font-size: 26px; display: block; margin-bottom: 8px; }
+.wc-icon-card h3 { margin: 0 0 4px; font-size: 15px; }
+.wc-icon-card p { margin: 0; font-size: 12.5px; color: var(--ink-soft); }
+
+.wc-card-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.wc-card-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+@media (max-width: 700px) {
+  .wc-card-grid-2, .wc-card-grid-3 { grid-template-columns: 1fr; }
+}
+
+.wc-cost-card {
+  background: var(--panel-alt);
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  padding: 16px 18px;
+}
+
+.wc-cost-card h3, .wc-cost-card h4 { margin: 0 0 4px; font-size: 14.5px; }
+.wc-cost-card p { margin: 0 0 8px; font-size: 13px; }
+.wc-cost-card p:last-of-type { margin-bottom: 0; }
+
+.wc-cost-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 800;
+  font-size: 17px;
+}
+
+.wc-cost-badge small { font-size: 12px; font-weight: 600; margin-left: 2px; }
+
+.wc-stat-block {
+  background: var(--panel-alt);
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  padding: 18px;
+  text-align: center;
+}
+
+.wc-stat-block .wc-stat-num { font-size: 28px; font-weight: 800; display: block; }
+.wc-stat-block .wc-stat-label { font-weight: 700; font-size: 13.5px; }
+.wc-stat-block .wc-stat-sub { font-size: 12px; color: var(--ink-soft); }
+
+.wc-pack-card {
+  background: var(--panel-alt);
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.wc-pack-card h3 { margin: 0; font-size: 16px; }
+.wc-pack-card .wc-pack-tags { margin: 0; font-size: 12px; font-style: italic; color: var(--ink-soft); }
+
+.wc-btn {
+  display: inline-block;
+  align-self: flex-start;
+  background: var(--ink);
+  color: var(--gold);
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.wc-btn:hover { opacity: 0.9; }
+
+.wc-outcome-box {
+  background: var(--panel);
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-style: italic;
+}
+
+.wc-design-image {
+  border: 3px solid var(--ink);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 12px 0;
+}
+
+.wc-design-image img { width: 100%; }
+
+/* ============================================================
+   Chatbot widget
+   ============================================================ */
+
+.wc-chat-launcher {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--nav-bg);
+  color: var(--gold);
+  border: 2px solid var(--ink);
+  border-radius: 30px;
+  padding: 12px 18px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+.wc-chat-launcher:hover { background: var(--nav-bg-alt); }
+
+.wc-chat-panel {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 950;
+  width: min(360px, calc(100vw - 32px));
+  height: min(520px, calc(100vh - 40px));
+  background: var(--panel);
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.wc-chat-panel[hidden] { display: none; }
+
+.wc-chat-header {
+  background: var(--nav-bg);
+  color: var(--gold);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.wc-chat-header button {
+  background: none;
+  border: none;
+  color: var(--cream-text);
+  font-size: 18px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 2px 6px;
+}
+
+.wc-chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 13.5px;
+}
+
+.wc-chat-msg { max-width: 88%; line-height: 1.45; }
+.wc-chat-msg-user {
+  align-self: flex-end;
+  background: var(--ink);
+  color: var(--gold);
+  padding: 8px 12px;
+  border-radius: 10px 10px 2px 10px;
+}
+.wc-chat-msg-bot {
+  align-self: flex-start;
+  background: var(--panel-alt);
+  border: 1px solid var(--ink);
+  padding: 8px 12px;
+  border-radius: 10px 10px 10px 2px;
+  white-space: pre-wrap;
+}
+.wc-chat-msg-bot.is-loading { font-style: italic; color: var(--ink-soft); }
+
+.wc-chat-sources {
+  align-self: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-width: 88%;
+}
+
+.wc-chat-sources a {
+  font-size: 11px;
+  text-decoration: none;
+  background: var(--panel);
+  border: 1px solid var(--ink);
+  border-radius: 10px;
+  padding: 3px 9px;
+  color: var(--ink);
+}
+.wc-chat-sources a:hover { background: var(--panel-alt); }
+
+.wc-chat-form {
+  display: flex;
+  gap: 8px;
+  padding: 10px;
+  border-top: 2px solid var(--ink);
+  background: var(--panel-alt);
+}
+
+.wc-chat-form input {
+  flex: 1;
+  border: 1px solid var(--ink);
+  border-radius: 20px;
+  padding: 8px 14px;
+  font-size: 13.5px;
+  font-family: inherit;
+  background: var(--panel);
+  color: var(--ink);
+}
+
+.wc-chat-form button {
+  background: var(--ink);
+  color: var(--gold);
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.wc-chat-form button:disabled { opacity: 0.5; cursor: default; }
+
+.wc-chat-hint {
+  padding: 0 14px 10px;
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+
 /* Utility */
 .wc-visually-hidden {
   position: absolute;
