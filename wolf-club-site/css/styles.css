@@ -65,9 +65,16 @@ img { max-width: 100%; display: block; }
   margin: 0 auto;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 18px;
   padding: 0 20px;
   height: var(--nav-height);
+}
+
+.wc-nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .wc-logo {
@@ -79,7 +86,6 @@ img { max-width: 100%; display: block; }
   color: var(--gold);
   text-decoration: none;
   white-space: nowrap;
-  margin-right: 8px;
 }
 
 /* Menu — lives behind the hamburger toggle at every screen width */
@@ -185,13 +191,7 @@ img { max-width: 100%; display: block; }
   pointer-events: none;
 }
 
-/* Search + hamburger */
-.wc-nav-tools {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
+/* Search — right-aligned in the bar */
 .wc-search {
   display: flex;
   align-items: center;
@@ -215,23 +215,25 @@ img { max-width: 100%; display: block; }
 
 .wc-search input::placeholder { color: #8a7a68; }
 
+/* Hamburger — small, sits right next to the logo */
 .wc-hamburger {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 4px;
-  width: 38px;
-  height: 38px;
+  gap: 3px;
+  width: 28px;
+  height: 28px;
   background: var(--nav-bg-alt);
   border: 1px solid #1a0e07;
-  border-radius: 6px;
+  border-radius: 5px;
   cursor: pointer;
   padding: 0;
+  flex-shrink: 0;
 }
 
 .wc-hamburger span {
   display: block;
-  width: 18px;
+  width: 14px;
   height: 2px;
   margin: 0 auto;
   background: var(--gold);

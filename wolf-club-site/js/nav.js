@@ -105,16 +105,17 @@
     root.setAttribute("role", "banner");
     root.innerHTML =
       '<div class="wc-nav-inner">' +
+      '<div class="wc-nav-left">' +
       '<a class="wc-logo" href="index.html">Wolf Club</a>' +
+      '<button class="wc-hamburger" type="button" aria-label="Toggle menu" aria-expanded="false">' +
+      "<span></span><span></span><span></span></button>" +
+      "</div>" +
       '<nav aria-label="Primary"><ul class="wc-menu">' + itemsHtml + "</ul></nav>" +
-      '<div class="wc-nav-tools">' +
       '<div class="wc-search" role="search">' +
       '<span aria-hidden="true">🔍</span>' +
       '<input type="search" placeholder="Search…" aria-label="Search Wolf Club" />' +
       "</div>" +
-      '<button class="wc-hamburger" type="button" aria-label="Toggle menu" aria-expanded="false">' +
-      "<span></span><span></span><span></span></button>" +
-      "</div></div>";
+      "</div>";
   }
 
   function wireInteractions(nav) {
