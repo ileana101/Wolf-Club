@@ -43,22 +43,17 @@
       key: "packs",
       children: [
         { label: "All Packs", href: "packs.html" },
-        { label: "Chandor", href: "packs.html#chandor" },
-        { label: "Fellfang", href: "packs.html#fellfang" },
-        { label: "Telcoyu", href: "packs.html#telcoyu" },
-        { label: "Riverfell", href: "packs.html#riverfell" },
-        { label: "Xassa", href: "packs.html#xassa" },
-        { label: "Allruh", href: "packs.html#allruh" },
-        { label: "Grayard", href: "packs.html#grayard" },
-        { label: "Virtus", href: "packs.html#virtus" },
+        { label: "Chandor", href: "chandor.html" },
+        { label: "Fellfang", href: "fellfang.html" },
+        { label: "Telcoyu", href: "telcoyu.html" },
+        { label: "Riverfell", href: "riverfell.html" },
+        { label: "Xassa", href: "xassa.html" },
+        { label: "Allruh", href: "allruh.html" },
+        { label: "Grayard", href: "grayard.html" },
+        { label: "Virtus", href: "virtus.html" },
       ],
     },
-    {
-      label: "Contact",
-      href: "#",
-      key: "contact",
-      children: [{ label: "Coming soon", href: "#", inert: true }],
-    },
+    { label: "Contact", href: "contact.html", key: "contact" },
   ];
 
   function escapeHtml(s) {

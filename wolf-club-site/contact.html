@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Contact | Wolf Club</title>
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<div id="wc-nav-root" data-current="contact" data-current-href="contact.html"></div>
+
+<div class="wc-page-header" style="text-align:center;">
+  <h1>Contact Us</h1>
+</div>
+
+<main class="wc-content">
+
+  <section class="wc-icon-cards">
+    <a class="wc-icon-card" href="mailto:contact@wolfclub.com" style="text-decoration:none;color:inherit;">
+      <span class="wc-icon-glyph" aria-hidden="true">✉️</span>
+      <h3>Email</h3>
+      <p>contact@wolfclub.com</p>
+    </a>
+    <a class="wc-icon-card" href="#" style="text-decoration:none;color:inherit;" title="Coming soon">
+      <span class="wc-icon-glyph" aria-hidden="true">💬</span>
+      <h3>Discord</h3>
+      <p>Join our Discord</p>
+    </a>
+    <a class="wc-icon-card" href="#" style="text-decoration:none;color:inherit;" title="Coming soon">
+      <span class="wc-icon-glyph" aria-hidden="true">🛟</span>
+      <h3>Support</h3>
+      <p>Get help from our team</p>
+    </a>
+  </section>
+
+  <section class="wc-panel">
+    <h2>Send Us a Message</h2>
+    <form id="wc-contact-form">
+      <div style="margin-bottom:14px;">
+        <label for="wc-c-name" style="display:block;font-weight:700;font-size:13px;margin-bottom:4px;">Name</label>
+        <input id="wc-c-name" name="name" type="text" placeholder="Your name here" required
+          style="width:100%;padding:10px 12px;border:2px solid var(--ink);border-radius:6px;background:var(--panel-alt);font-family:inherit;font-size:14px;" />
+      </div>
+      <div style="margin-bottom:14px;">
+        <label for="wc-c-email" style="display:block;font-weight:700;font-size:13px;margin-bottom:4px;">Email</label>
+        <input id="wc-c-email" name="email" type="email" placeholder="your.email@example.com" required
+          style="width:100%;padding:10px 12px;border:2px solid var(--ink);border-radius:6px;background:var(--panel-alt);font-family:inherit;font-size:14px;" />
+      </div>
+      <div style="margin-bottom:14px;">
+        <label for="wc-c-subject" style="display:block;font-weight:700;font-size:13px;margin-bottom:4px;">Subject</label>
+        <input id="wc-c-subject" name="subject" type="text" placeholder="Subject" required
+          style="width:100%;padding:10px 12px;border:2px solid var(--ink);border-radius:6px;background:var(--panel-alt);font-family:inherit;font-size:14px;" />
+      </div>
+      <div style="margin-bottom:18px;">
+        <label for="wc-c-message" style="display:block;font-weight:700;font-size:13px;margin-bottom:4px;">Message</label>
+        <textarea id="wc-c-message" name="message" rows="6" placeholder="Tell us how we can help you…" required
+          style="width:100%;padding:10px 12px;border:2px solid var(--ink);border-radius:6px;background:var(--panel-alt);font-family:inherit;font-size:14px;resize:vertical;"></textarea>
+      </div>
+      <button type="submit" class="wc-btn" style="padding:12px 28px;font-size:14px;">Send</button>
+      <p id="wc-contact-status" style="margin:12px 0 0;font-size:13px;color:var(--ink-soft);" hidden></p>
+    </form>
+  </section>
+
+</main>
+
+<footer class="wc-footer">
+  <p>© 2014 Wolf Club - Art &amp; Roleplay Community</p>
+  <p>A semi-realistic wolf art and roleplay group</p>
+</footer>
+
+<script src="js/nav.js"></script>
+<script src="js/chatbot.js"></script>
+<script>
+  // No backend/email service is wired up yet, so submitting hands the
+  // message to the visitor's own mail client via a mailto: link — this
+  // works with zero configuration. Swap this for a real form-submission
+  // endpoint (e.g. a serverless function + email API, or a service like
+  // Formspree) once one is available.
+  (function () {
+    var form = document.getElementById("wc-contact-form");
+    var status = document.getElementById("wc-contact-status");
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var name = form.name.value.trim();
+      var email = form.email.value.trim();
+      var subject = form.subject.value.trim();
+      var message = form.message.value.trim();
+      var body = "From: " + name + " (" + email + ")\n\n" + message;
+      var mailto =
+        "mailto:contact@wolfclub.com?subject=" +
+        encodeURIComponent(subject) +
+        "&body=" +
+        encodeURIComponent(body);
+      window.location.href = mailto;
+      status.hidden = false;
+      status.textContent = "Opening your email client to send this to contact@wolfclub.com…";
+    });
+  })();
+</script>
+</body>
+</html>

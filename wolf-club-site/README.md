@@ -40,14 +40,20 @@ for the AI chatbot.
   pups/litters, additional characters, and creating a pack.
 - **`packs.html`** — the eight active packs, Loners/Loner Bands, Other
   Creatures, and the disbanded-packs lore.
+- **`chandor.html`**, **`fellfang.html`**, **`allruh.html`**,
+  **`riverfell.html`**, **`xassa.html`**, **`grayard.html`**,
+  **`virtus.html`**, **`telcoyu.html`** — the full per-pack culture pages:
+  history, foreign relations, culture/religion/customs, laws, tasks, and
+  the pack ranks table, each themed with its own accent palette (sampled
+  from the source doc) via CSS custom properties on `.wc-pack-theme` rather
+  than the site's default warm tan/gold. "View Pack" buttons on
+  `packs.html` and the Packs nav dropdown link straight to these.
+- **`contact.html`** — Email/Discord/Support cards plus a "Send Us a
+  Message" form. There's no backend wired up, so submitting opens the
+  visitor's own email client via a `mailto:` link (see the note in the
+  file) — swap that for a real form-submission endpoint when one exists.
 
-Content for **Contact** hasn't been provided yet — that nav item has a
-dropdown per the design note, but currently shows an inert "Coming soon"
-entry. The **Resources** tab has been removed per request. Per-pack culture
-pages (Chandor, Fellfang, etc.) aren't built yet either — the Packs page's
-"View Pack" buttons and nav dropdown currently just anchor down to that
-pack's card on the same page; wire them to real pages once that content
-arrives.
+The **Resources** tab has been removed per request.
 
 ## Navigation behavior
 
@@ -113,6 +119,17 @@ it's available.
 The "About Us" paragraph on the home page was cut off at the bottom of the
 original screenshot; the ending has been written to match the surrounding
 tone but should be checked against the original Figma copy.
+
+Pack crest/sigil artwork wasn't provided as linkable image files (they're
+embedded drawings in the source docs, not URLs), so each pack page uses a
+themed emoji in the hero instead — swap those for the real crest images
+under an `assets/` folder when available. Where a pack's Resources /
+Character Folder / Pack Journal / Map / App Template / Past Events links
+had a real URL in the source document, they're wired up as live links;
+where the source document itself only had placeholder text (no link), the
+button renders inert with a "Coming soon" title, same convention as the
+rest of the site — e.g. Chandor's and Telcoyu's Timeline/Playlist are
+still placeholders because the source docs never linked them either.
 
 ## Running locally
 

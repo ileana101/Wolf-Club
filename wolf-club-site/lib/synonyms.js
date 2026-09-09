@@ -43,6 +43,16 @@ const SYNONYM_GROUPS = [
   ["shop", "store", "buy", "purchase", "purchasing", "spend bones"],
   ["gallery", "art page", "portfolio"],
   ["discord", "server", "chat"],
+  ["alpha leader title", "jarl", "cyrus", "the prime", "the radiance", "honorable"],
+  ["fellfang", "code of honor", "witchdoctors", "witch-doctors"],
+  ["allruh", "hintertomb", "dark academia", "aeonkin"],
+  ["riverfell", "gold feathers", "siamsa", "matriarchy"],
+  ["xassa", "xerxes peace", "melchior", "the caves"],
+  ["grayard", "the bough", "the fell", "yard warden"],
+  ["virtus", "kindred", "battalion"],
+  ["telcoyu", "vektren", "soigner", "the mother and father"],
+  ["chandor", "aethelynda", "sanctuary pack", "bearguard", "owlwatch"],
+  ["contact", "email", "reach us", "get in touch", "support"],
 ];
 
 const CANONICAL_BY_TERM = new Map();
