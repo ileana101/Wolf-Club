@@ -101,13 +101,14 @@ img { max-width: 100%; display: block; }
   flex-direction: column;
   gap: 0;
   background: var(--nav-bg);
-  border-top: 1px solid #1a0e07;
+  border-top: 0 solid #1a0e07;
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.25s ease;
+  transition: max-height 0.25s ease, border-top-width 0.25s ease;
 }
 
 .wc-nav.is-menu-open .wc-menu {
+  border-top-width: 1px;
   max-height: 80vh;
   overflow-y: auto;
 }
@@ -234,6 +235,10 @@ img { max-width: 100%; display: block; }
   display: flex;
   flex-direction: column;
   gap: 2px;
+}
+
+.wc-search-results[hidden] {
+  display: none;
 }
 
 .wc-search-result {
