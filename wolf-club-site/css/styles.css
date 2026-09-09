@@ -1,0 +1,603 @@
+/* ============================================================
+   Wolf Club — shared styles
+   Palette sampled directly from the Figma prototype screenshots:
+     page background   #c4a174
+     panel fill        #fad89b
+     panel/text border #2b1810
+     pill / card fill  #e6b067
+     nav background    #2c1a10
+     gold accent text  #f2c07a
+     muted brown text  #6b4f30
+   ============================================================ */
+
+:root {
+  --bg: #c4a174;
+  --panel: #fad89b;
+  --panel-alt: #e6b067;
+  --ink: #2b1810;
+  --ink-soft: #6b4f30;
+  --nav-bg: #2c1a10;
+  --nav-bg-alt: #3d2817;
+  --gold: #f2c07a;
+  --cream-text: #ecd9b8;
+  --radius: 10px;
+  --nav-height: 68px;
+  --max-width: 1100px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.55;
+}
+
+a { color: inherit; }
+
+img { max-width: 100%; display: block; }
+
+.wc-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ============================================================
+   Top navigation — sticky so links stay reachable while scrolling
+   ============================================================ */
+
+.wc-nav {
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  background: var(--nav-bg);
+  border-bottom: 1px solid #1a0e07;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+.wc-nav-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 0 20px;
+  height: var(--nav-height);
+}
+
+.wc-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--gold);
+  text-decoration: none;
+  white-space: nowrap;
+  margin-right: 8px;
+}
+
+.wc-logo-mark { font-size: 20px; line-height: 1; }
+
+.wc-menu {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+}
+
+.wc-menu-item { position: relative; }
+
+.wc-menu-link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  color: var(--cream-text);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.wc-menu-link:hover,
+.wc-menu-link:focus-visible,
+.wc-menu-item.is-open > .wc-menu-link {
+  background: var(--nav-bg-alt);
+  color: var(--gold);
+}
+
+.wc-menu-link.is-current {
+  background: var(--nav-bg-alt);
+  color: var(--gold);
+}
+
+.wc-caret {
+  font-size: 10px;
+  transition: transform 0.15s ease;
+}
+
+.wc-menu-item.is-open .wc-caret { transform: rotate(180deg); }
+
+/* Dropdown panel */
+.wc-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  min-width: 190px;
+  background: var(--nav-bg-alt);
+  border: 1px solid #1a0e07;
+  border-radius: 8px;
+  padding: 6px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.wc-menu-item.is-open > .wc-dropdown { display: flex; }
+
+.wc-dropdown a {
+  display: block;
+  padding: 9px 12px;
+  border-radius: 6px;
+  color: var(--cream-text);
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 500;
+}
+
+.wc-dropdown a:hover,
+.wc-dropdown a:focus-visible {
+  background: var(--nav-bg);
+  color: var(--gold);
+}
+
+.wc-dropdown a.is-inert {
+  color: #8a7a68;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Search + hamburger */
+.wc-nav-tools {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wc-search {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--nav-bg-alt);
+  border: 1px solid #1a0e07;
+  border-radius: 20px;
+  padding: 7px 14px;
+  color: #b8a68c;
+  font-size: 13px;
+}
+
+.wc-search input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--cream-text);
+  font-size: 13px;
+  width: 120px;
+}
+
+.wc-search input::placeholder { color: #8a7a68; }
+
+.wc-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  width: 38px;
+  height: 38px;
+  background: var(--nav-bg-alt);
+  border: 1px solid #1a0e07;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.wc-hamburger span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  margin: 0 auto;
+  background: var(--gold);
+  border-radius: 2px;
+}
+
+/* ============================================================
+   Mobile nav — collapses to a hamburger + slide-down panel
+   ============================================================ */
+
+@media (max-width: 880px) {
+  .wc-hamburger { display: flex; }
+
+  .wc-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--nav-bg);
+    border-top: 1px solid #1a0e07;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+  }
+
+  .wc-nav.is-menu-open .wc-menu {
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  .wc-menu-item { width: 100%; border-bottom: 1px solid #1a0e07; }
+
+  .wc-menu-link {
+    width: 100%;
+    justify-content: space-between;
+    border-radius: 0;
+    padding: 14px 20px;
+  }
+
+  .wc-dropdown {
+    position: static;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+    background: #1e1108;
+    padding: 0;
+    display: none;
+  }
+
+  .wc-menu-item.is-open > .wc-dropdown { display: flex; }
+
+  .wc-dropdown a { padding: 12px 20px 12px 34px; }
+
+  .wc-search { display: none; }
+}
+
+/* ============================================================
+   Hero
+   ============================================================ */
+
+.wc-hero {
+  position: relative;
+  min-height: 340px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  padding: 40px 20px;
+  background:
+    radial-gradient(ellipse at 25% 20%, rgba(255, 214, 158, 0.35), transparent 55%),
+    radial-gradient(ellipse at 75% 75%, rgba(60, 110, 60, 0.45), transparent 55%),
+    radial-gradient(ellipse at 50% 100%, rgba(20, 10, 5, 0.55), transparent 60%),
+    linear-gradient(160deg, #6b3d2a 0%, #7c5a2e 35%, #4f6b3a 65%, #3a2a18 100%);
+}
+
+.wc-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 10, 5, 0.18);
+}
+
+.wc-hero-content { position: relative; z-index: 1; }
+
+.wc-hero-logo {
+  font-size: clamp(34px, 6vw, 56px);
+  font-weight: 800;
+  color: var(--gold);
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+}
+
+.wc-hero-tagline {
+  margin: 14px 0 0;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #2c1a10;
+  background: rgba(250, 216, 155, 0.92);
+  display: inline-block;
+  padding: 8px 20px;
+  border-radius: 20px;
+}
+
+/* Plain title banner used on interior pages (no illustration) */
+.wc-page-header {
+  padding: 46px 20px 30px;
+}
+
+.wc-page-header h1 {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  font-size: clamp(26px, 4vw, 34px);
+}
+
+/* ============================================================
+   Content panels
+   ============================================================ */
+
+.wc-content {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 30px 20px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.wc-panel {
+  background: var(--panel);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+}
+
+.wc-panel h2 {
+  margin-top: 0;
+  font-size: 22px;
+}
+
+.wc-panel h3 {
+  font-size: 16px;
+  margin: 22px 0 6px;
+}
+
+.wc-panel p { margin: 0 0 14px; }
+.wc-panel p:last-child { margin-bottom: 0; }
+
+.wc-panel ul { margin: 0 0 14px; padding-left: 22px; }
+.wc-panel ul:last-child { margin-bottom: 0; }
+.wc-panel li { margin-bottom: 10px; }
+.wc-panel li ul { margin-top: 8px; }
+
+.wc-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+
+@media (max-width: 720px) {
+  .wc-two-col { grid-template-columns: 1fr; }
+}
+
+/* Accent list items — left border callouts (steps, code-of-conduct rules, etc.) */
+.wc-steps { display: flex; flex-direction: column; gap: 16px; }
+
+.wc-step {
+  border-left: 4px solid var(--ink);
+  padding: 2px 0 2px 16px;
+}
+
+.wc-step h3 { margin: 0 0 4px; font-size: 15px; }
+.wc-step p { margin: 0; font-size: 14.5px; }
+
+.wc-callout {
+  border: 2px solid var(--ink);
+  background: var(--panel-alt);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin: 16px 0;
+  font-size: 14.5px;
+}
+
+.wc-callout a { font-weight: 700; text-decoration: underline; }
+
+.wc-note {
+  background: var(--panel-alt);
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-top: 14px;
+}
+
+.wc-note p:first-child { margin-top: 0; }
+
+/* Helpful links list (home page) */
+.wc-linklist { list-style: none; margin: 0; padding: 0; }
+
+.wc-linklist li { margin-bottom: 8px; }
+
+.wc-linklist a {
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.wc-linklist a:hover { text-decoration: underline; }
+
+.wc-hr {
+  border: none;
+  border-top: 1px solid var(--ink);
+  opacity: 0.35;
+  margin: 12px 0 16px;
+}
+
+.wc-kicker {
+  display: inline-block;
+  margin-bottom: 2px;
+}
+
+.wc-kicker a {
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.wc-kicker-sub {
+  display: block;
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-bottom: 14px;
+}
+
+/* Character of the Season card */
+.wc-cos-card {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  background: var(--panel-alt);
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.wc-cos-avatar {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--ink);
+  flex-shrink: 0;
+  background: var(--panel);
+}
+
+.wc-cos-name { margin: 0; font-size: 17px; }
+.wc-cos-species { margin: 0 0 8px; font-size: 12.5px; color: var(--ink-soft); font-weight: 600; }
+.wc-cos-blurb { font-size: 13.5px; margin: 0 0 12px; }
+
+.wc-pill-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.wc-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--ink);
+  color: var(--gold);
+  border: none;
+  border-radius: 16px;
+  padding: 7px 14px;
+  font-size: 12.5px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: default;
+}
+
+/* Featured gallery */
+.wc-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.wc-gallery a { border-radius: 8px; overflow: hidden; border: 2px solid var(--ink); }
+
+.wc-gallery img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  transition: transform 0.2s ease;
+}
+
+.wc-gallery a:hover img { transform: scale(1.05); }
+
+@media (max-width: 700px) {
+  .wc-gallery { grid-template-columns: 1fr; }
+  .wc-gallery img { height: 200px; }
+}
+
+/* Name / role pill-button used on the Staff page */
+.wc-name-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.wc-name-pill {
+  flex: 1 1 160px;
+  text-align: center;
+  background: var(--panel-alt);
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  padding: 14px 12px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* Two-up title cards used for pack leaders / scribes */
+.wc-title-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+@media (max-width: 640px) {
+  .wc-title-grid { grid-template-columns: 1fr; }
+}
+
+.wc-title-card {
+  background: var(--panel-alt);
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  padding: 14px 18px;
+}
+
+.wc-title-card .wc-title-name {
+  display: block;
+  font-weight: 700;
+  font-size: 13.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.wc-title-card .wc-title-handle {
+  display: block;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  margin-top: 2px;
+}
+
+/* ============================================================
+   Footer
+   ============================================================ */
+
+.wc-footer {
+  background: var(--panel-alt);
+  border-top: 2px solid var(--ink);
+  text-align: center;
+  padding: 22px 20px;
+  font-size: 13px;
+}
+
+.wc-footer p { margin: 0 0 4px; font-weight: 700; }
+.wc-footer p:last-child { margin-bottom: 0; font-weight: 400; color: var(--ink-soft); }
+
+/* Utility */
+.wc-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
