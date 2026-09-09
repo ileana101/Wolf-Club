@@ -98,10 +98,14 @@
       );
     }).join("");
 
+    // The nav IS #wc-nav-root (rather than an inner <header>) so that the
+    // sticky element's containing block is <body> — not a wrapper div that
+    // auto-shrinks to the nav's own height and would cancel the sticking.
+    root.classList.add("wc-nav");
+    root.setAttribute("role", "banner");
     root.innerHTML =
-      '<header class="wc-nav">' +
       '<div class="wc-nav-inner">' +
-      '<a class="wc-logo" href="index.html"><span class="wc-logo-mark" aria-hidden="true">🐾</span>Wolf Club</a>' +
+      '<a class="wc-logo" href="index.html">Wolf Club</a>' +
       '<nav aria-label="Primary"><ul class="wc-menu">' + itemsHtml + "</ul></nav>" +
       '<div class="wc-nav-tools">' +
       '<div class="wc-search" role="search">' +
@@ -110,16 +114,12 @@
       "</div>" +
       '<button class="wc-hamburger" type="button" aria-label="Toggle menu" aria-expanded="false">' +
       "<span></span><span></span><span></span></button>" +
-      "</div></div></header>";
+      "</div></div>";
   }
 
   function wireInteractions(nav) {
     var hamburger = nav.querySelector(".wc-hamburger");
     var items = Array.prototype.slice.call(nav.querySelectorAll(".wc-menu-item"));
-
-    function isMobile() {
-      return window.matchMedia("(max-width: 880px)").matches;
-    }
 
     function closeAllDropdowns(except) {
       items.forEach(function (item) {
@@ -152,16 +152,6 @@
         closeAllDropdowns(item);
         item.classList.toggle("is-open", willOpen);
       });
-
-      item.addEventListener("mouseenter", function () {
-        if (!isMobile()) {
-          closeAllDropdowns(item);
-          item.classList.add("is-open");
-        }
-      });
-      item.addEventListener("mouseleave", function () {
-        if (!isMobile()) item.classList.remove("is-open");
-      });
     });
 
     document.addEventListener("click", function (e) {
@@ -179,7 +169,7 @@
     var root = document.getElementById("wc-nav-root");
     if (!root) return;
     render(root);
-    wireInteractions(root.querySelector(".wc-nav"));
+    wireInteractions(root);
   }
 
   if (document.readyState === "loading") {

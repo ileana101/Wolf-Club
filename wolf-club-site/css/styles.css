@@ -82,26 +82,40 @@ img { max-width: 100%; display: block; }
   margin-right: 8px;
 }
 
-.wc-logo-mark { font-size: 20px; line-height: 1; }
-
+/* Menu — lives behind the hamburger toggle at every screen width */
 .wc-menu {
   list-style: none;
-  display: flex;
-  align-items: center;
-  gap: 4px;
   margin: 0;
   padding: 0;
-  flex: 1;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: var(--nav-bg);
+  border-top: 1px solid #1a0e07;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease;
 }
 
-.wc-menu-item { position: relative; }
+.wc-nav.is-menu-open .wc-menu {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.wc-menu-item { position: relative; width: 100%; border-bottom: 1px solid #1a0e07; }
 
 .wc-menu-link {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 5px;
-  padding: 10px 12px;
-  border-radius: 6px;
+  width: 100%;
+  padding: 14px 20px;
+  border-radius: 0;
   color: var(--cream-text);
   text-decoration: none;
   font-size: 14px;
@@ -133,17 +147,15 @@ img { max-width: 100%; display: block; }
 
 .wc-menu-item.is-open .wc-caret { transform: rotate(180deg); }
 
-/* Dropdown panel */
+/* Dropdown panel — a nested accordion inside the hamburger menu */
 .wc-dropdown {
-  position: absolute;
-  top: calc(100% + 6px);
-  left: 0;
-  min-width: 190px;
-  background: var(--nav-bg-alt);
-  border: 1px solid #1a0e07;
-  border-radius: 8px;
-  padding: 6px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  position: static;
+  min-width: 0;
+  background: #1e1108;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
   display: none;
   flex-direction: column;
   gap: 2px;
@@ -153,8 +165,8 @@ img { max-width: 100%; display: block; }
 
 .wc-dropdown a {
   display: block;
-  padding: 9px 12px;
-  border-radius: 6px;
+  padding: 12px 20px 12px 34px;
+  border-radius: 0;
   color: var(--cream-text);
   text-decoration: none;
   font-size: 13.5px;
@@ -204,7 +216,7 @@ img { max-width: 100%; display: block; }
 .wc-search input::placeholder { color: #8a7a68; }
 
 .wc-hamburger {
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 4px;
@@ -227,55 +239,10 @@ img { max-width: 100%; display: block; }
 }
 
 /* ============================================================
-   Mobile nav — collapses to a hamburger + slide-down panel
+   Narrow screens — the search box makes room for the menu panel
    ============================================================ */
 
-@media (max-width: 880px) {
-  .wc-hamburger { display: flex; }
-
-  .wc-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    background: var(--nav-bg);
-    border-top: 1px solid #1a0e07;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.25s ease;
-  }
-
-  .wc-nav.is-menu-open .wc-menu {
-    max-height: 80vh;
-    overflow-y: auto;
-  }
-
-  .wc-menu-item { width: 100%; border-bottom: 1px solid #1a0e07; }
-
-  .wc-menu-link {
-    width: 100%;
-    justify-content: space-between;
-    border-radius: 0;
-    padding: 14px 20px;
-  }
-
-  .wc-dropdown {
-    position: static;
-    box-shadow: none;
-    border: none;
-    border-radius: 0;
-    background: #1e1108;
-    padding: 0;
-    display: none;
-  }
-
-  .wc-menu-item.is-open > .wc-dropdown { display: flex; }
-
-  .wc-dropdown a { padding: 12px 20px 12px 34px; }
-
+@media (max-width: 520px) {
   .wc-search { display: none; }
 }
 
