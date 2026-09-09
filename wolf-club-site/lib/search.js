@@ -1,4 +1,9 @@
-const { expandQuery } = require("./synonyms");
+// Works in Node (api/chat.js, via require) and in the browser (plain
+// <script> tag, via the window.WolfClubSynonyms global set by synonyms.js).
+var expandQuery =
+  typeof module !== "undefined" && module.exports
+    ? require("./synonyms").expandQuery
+    : window.WolfClubSynonyms.expandQuery;
 
 function tokenize(text) {
   return text
@@ -48,4 +53,9 @@ function searchContent(query, index, topK = 5) {
     .map((s) => s.chunk);
 }
 
-module.exports = { searchContent, tokenize };
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = { searchContent, tokenize };
+}
+if (typeof window !== "undefined") {
+  window.WolfClubSearch = { searchContent, tokenize };
+}

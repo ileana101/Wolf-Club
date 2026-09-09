@@ -111,10 +111,11 @@
       "<span></span><span></span><span></span></button>" +
       "</div>" +
       '<nav aria-label="Primary"><ul class="wc-menu">' + itemsHtml + "</ul></nav>" +
-      '<div class="wc-search" role="search">' +
+      '<form class="wc-search" role="search" autocomplete="off">' +
       '<span aria-hidden="true">🔍</span>' +
       '<input type="search" placeholder="Search…" aria-label="Search Wolf Club" />' +
-      "</div>" +
+      '<div class="wc-search-results" hidden></div>' +
+      "</form>" +
       "</div>";
   }
 
@@ -166,11 +167,84 @@
     });
   }
 
+  // Wires the nav search box to the same synonym-aware lexical search that
+  // powers the chatbot (window.WolfClubSearch / window.WolfClubContentIndex,
+  // loaded from lib/search.js, lib/synonyms.js, lib/content-index.js), so
+  // typing a query and hitting Enter (or picking a result) actually
+  // navigates to the matching page instead of doing nothing.
+  function wireSearch(nav) {
+    var form = nav.querySelector(".wc-search");
+    var input = form && form.querySelector("input");
+    var results = form && form.querySelector(".wc-search-results");
+    if (!form || !input || !results) return;
+    if (!window.WolfClubSearch || !window.WolfClubContentIndex) return;
+
+    var matches = [];
+    var debounceTimer = null;
+
+    function renderResults() {
+      var query = input.value.trim();
+      if (query.length < 2) {
+        matches = [];
+        results.hidden = true;
+        results.innerHTML = "";
+        return;
+      }
+      matches = window.WolfClubSearch.searchContent(query, window.WolfClubContentIndex.CONTENT_INDEX, 6);
+      if (matches.length === 0) {
+        results.innerHTML = '<div class="wc-search-empty">No matching pages — try a different word.</div>';
+        results.hidden = false;
+        return;
+      }
+      results.innerHTML = matches
+        .map(function (m, i) {
+          return (
+            '<a href="' + m.url + '" class="wc-search-result" data-index="' + i + '">' +
+            '<span class="wc-search-result-page">' + escapeHtml(m.page) + "</span>" +
+            '<span class="wc-search-result-heading">' + escapeHtml(m.heading) + "</span>" +
+            "</a>"
+          );
+        })
+        .join("");
+      results.hidden = false;
+    }
+
+    input.addEventListener("input", function () {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(renderResults, 150);
+    });
+
+    input.addEventListener("focus", function () {
+      if (input.value.trim().length >= 2) renderResults();
+    });
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (matches.length > 0) {
+        window.location.href = matches[0].url;
+      }
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!form.contains(e.target)) {
+        results.hidden = true;
+      }
+    });
+
+    input.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") {
+        results.hidden = true;
+        input.blur();
+      }
+    });
+  }
+
   function init() {
     var root = document.getElementById("wc-nav-root");
     if (!root) return;
     render(root);
     wireInteractions(root);
+    wireSearch(root);
   }
 
   if (document.readyState === "loading") {

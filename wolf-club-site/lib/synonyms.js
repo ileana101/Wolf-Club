@@ -100,4 +100,12 @@ function expandQuery(query) {
   return Array.from(expansions);
 }
 
-module.exports = { expandQuery, SYNONYM_GROUPS };
+// Exported for Node (api/chat.js) via require(), and as a browser global
+// (window.WolfClubSynonyms) for the plain <script>-tag pages so the nav
+// search box can reuse the same synonym expansion client-side.
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = { expandQuery, SYNONYM_GROUPS };
+}
+if (typeof window !== "undefined") {
+  window.WolfClubSynonyms = { expandQuery, SYNONYM_GROUPS };
+}

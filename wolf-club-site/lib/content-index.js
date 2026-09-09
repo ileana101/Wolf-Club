@@ -144,4 +144,12 @@ const CONTENT_INDEX = [
   { page: "Contact", url: "contact.html", heading: "Contact Wolf Club", text: "The Contact page lists ways to reach Wolf Club: email (contact@wolfclub.com), the group's Discord, a support option, and a 'Send Us a Message' form covering name, email, subject, and message." },
 ];
 
-module.exports = { CONTENT_INDEX };
+// Exported for Node (api/chat.js) via require(), and as a browser global
+// (window.WolfClubContentIndex) so the nav search box can search the same
+// content client-side without a round trip to /api/chat.
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = { CONTENT_INDEX };
+}
+if (typeof window !== "undefined") {
+  window.WolfClubContentIndex = { CONTENT_INDEX };
+}
